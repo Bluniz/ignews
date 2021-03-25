@@ -36,7 +36,18 @@ export default function Home({ product }: HomeProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { postSlug: "sth" } },
+      { params: { postSlug: "sth-else" } },
+    ],
+    fallback: true,
+  };
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  console.log(params);
   const price = await stripe.prices.retrieve(
     "price_1IYIVwIeUfAo4lsmcZIaKWnL" /* , {
     expand: ["product"],
