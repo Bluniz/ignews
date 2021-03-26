@@ -3,6 +3,7 @@ import { types } from "node:util";
 import { Readable } from "stream";
 import Stripe from "stripe";
 import { stripe } from "../../services/stripe";
+import { saveSubscription } from "./_lib/manageSubscription";
 
 // Função para converter uma stream em algo que possamos usar.
 async function buffer(readable: Readable) {
@@ -46,7 +47,26 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     const { type } = event;
 
     if (relevantsEvents.has(type)) {
-      console.log("evento recebido", event);
+      try {
+        switch (type) {
+          case "checkout.session.completed":
+            //! Todos os eventos do stripe tem tipagens genéricas de evento
+            //? Assim dei uma tipagem e podemos saber tudo que tem dentro do checkout
+            const checkoutSession = event.data
+              .object as Stripe.Checkout.Session;
+
+            await saveSubscription(
+              checkoutSession.subscription.toString(),
+              checkoutSession.customer.toString()
+            );
+            break;
+
+          default:
+            throw new Error("Unhandled event");
+        }
+      } catch (err) {
+        return res.json({ error: "Webhook handler failed" });
+      }
     }
 
     return res.json({ received: true });
