@@ -1,0 +1,19 @@
+yarn run v1.22.5
+$ /home/bluniz/Develop/github/ignews/node_modules/.bin/jose newkey -t RSA -s 2048 -K -b
+{
+    "keys": [
+        {
+            "kty": "RSA",
+            "kid": "oaL_y-G4Zm6f7miBR58TjdHY-kPTEH1Qtue0R0clibc",
+            "e": "AQAB",
+            "n": "unFb0NfH0RtyWWyBfVoWZDf3XsG5AQbbmNFR-B3pPF0fKAUYqGlWmYxdYaapqlUmGotl0rueXv8xYr_QBakVPbo-E_XqXt2acCSZ4awc8wVer3eFcNKc2HF-SwS7hLrka8ww9pAR-toYXcyQTq7WbxOze8hD___GvtZEoYMEmbr-sonYe1pRzsbO7Y1r0Mod5wwlsxWxJwa47gtCU7i6MmnhuNVwilkkLwKzPmPt35b-o5oG2Yla5UhHNF_kOzMEpU3WqyR2MWa-mlS7_uK6YC9DTxpJYYMi9NOC_YpGxGZ1lcaLvwp6LV7ewQ8RnuqkiRwBHnqdL43ERTzyJR620w",
+            "d": "RiX0l8U4RzL-eSrcJZ_JoPd1uU9GHl7ILN1E7AfFA5M9777LIkJP9QHc-KrOV2omJgKg0wMIeVGm8TKeQCL3_Puf876o6fyS6PK8ey5Yzg8NKxPbPzHfFYjOLcegDjaLTwvKuFpIiYuZc2FOQmyB_dT5yO72ttEzpAXWWLaE-pm9C3rAdIuZxiYtwxmzPgdw1wEZ2uH1pc8T-6aDYTZ1JqJW9zLWUKV_AvHLvVOCn-IaQvjw3XDIlg4WWA-aornfjR3lRGO6NCuIYhjw-BWygsrEzObnbkDyr3pjEhCfd-3tqbSIbUSIRCRQectTRYap6UDBfussv-9KDfyT_DnS4Q",
+            "p": "-HoJptT55UkmV1xkeXG3OVvKxbyUiIiGQaOWWG0Co79qxIGDmZAmmFtxi9aMq906MjHfRRcerqewBWrOIJxT8Adh29KfJx0jNBv2ObFhjBpl59zv5TNQVmurzb7aEKef5QhFVbPaTFVzZp8tIR9tkYruvkGdRvoTI1pXfYOIsks",
+            "q": "wBZ9yTbKQUXnBjPqBzNWbd9u9rsZujgWAsa0ISg-i5ax-tXq5YnNuDHT0fh9s_f5ET7DFb7-iInaqAHcfJqmqWbcfGPGYJWVyBq6wKrVBRJXOLC7EmD7vmQZ1Pe4UG98MSqf0OIgsaWKSX7DIqJkw-yafjsFyd-5G5QN8h7reJk",
+            "dp": "CQ-6RmFB88ClK05tQ5iIDAly7Z8g85G3A7HJi9P94qbaZ-wpNnJxVeEP1P-wBZx9wNLcx5I-RjRLUQdCGSJaVUiPowqdTznazM2wPw5e9lMIIFqITR1_8oberxQks7LJO_r_PE7gySPcn4Nyi-CviD0-06Vk7O-1vvZOdn9Tft0",
+            "dq": "Sjum6s7oxObtzCDd7WByo014xZMy8xtfrjz6OeIiobFgIM7w0zo5LVjcQkXk1lsbfwWhQNMp7LxRqyHlAqaFh-v_g3bPoF3On6Fs0K50WlxnJrpt4UFnqIFo1jvRmAwtk5akYoYxGlYeJh797HGTvX-_iM7ogsaZ88V4yjwWxek",
+            "qi": "VmC5IZWwqJHt4AGHOyP9dWOQzSWHAJmJLFvzTpWpl-ygxuqrMzKayfNcKnlrpHB7N9EF1ADcIZDv3_CTc27lGp6KL3uMw-Q5EZMXFmUbnOgm3AqZ1fU1k6JItI5rHPJT8SSkharH4QjUkq1h7olyk0VMShlRl7vNWmHfVQpNBg4"
+        }
+    ]
+}
+Done in 0.32s.
