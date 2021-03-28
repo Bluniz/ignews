@@ -4,6 +4,9 @@ import Providers from "next-auth/providers";
 import { query as q } from "faunadb";
 import { fauna } from "../../../services/faunadb";
 
+console.log(`${process.env.GITHUB_CLIENT_ID}`);
+console.log(`${process.env.GITHUB_CLIENT_SECRET}`);
+
 export default NextAuth({
   providers: [
     Providers.GitHub({
