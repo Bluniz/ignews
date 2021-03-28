@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { useSession } from "next-auth/client";
 import Head from "next/head";
 import Link from "next/link";
@@ -53,11 +53,49 @@ export default function PostPreview({ post }: PostPreviewProps) {
     </>
   );
 }
+//! Formas de gerar páginas estáticas no Next
+/*
+  ! Forma 1
+  ? * Gerar as páginas estáticas durante a build -> Ao tu dar o next build para
+  ? * produção, ele já irá criar TODAS as páginas estáticas previamente. 
+  
+  ! Forma 2
+  ? * Gerar a página estática no primeiro acesso -> Quando a primeira pessoa acessar
+  ? * a página do produto, ai sim irá gerar as pag estáticas
+  
+  ! Forma 3
+  ? * Metade, gerar alguns durante a build e depois gerar durante o acesso.
+  
+*/
 
-export const getStaticPaths = () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
-    fallback: "blocking",
+    fallback: "blocking", //? true, false, ou blocking.
+
+    /* 
+    ! true -> Se alguem tentar acessar um post que ainda não foi gerado de forma estática, 
+    !  que carregue a página do lado do browser.
+    ? Problemas de usar o true
+    * Layout Shift -> Carregar a página sem o conteudo e depois preencher
+    * Não é bom para SEO. 
+
+    
+    ! false -> Se a página não foi gerada de forma estática ainda, retorna um 404.
+
+
+    ! blocking -> Parecido com o true, porém quando acessar um conteudo que ainda não foii
+    ! gerado de forma estatica, ele vai tentar carregar o conteudo novo na camada no next,
+    ! executando um serverSide Rendering
+
+
+    ? Na grande maioria das vezes você irá acabar utilizando ou o blocking
+    ? que vai utilizar quando tu tem um conteudo que pode surgir novos no futuro
+    ? ou quando você não carrega todos os conteudos. Ou você irá utilizar o false
+    ? quando você já gerou todos os conteudos estáticos definidos pelo path e 
+    ? o que não estiver no paths, não é para ser carregado e dar erro 404.
+     
+    */
   };
 };
 
