@@ -35,16 +35,15 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     const buf = await buffer(req);
     const secret = req.headers["stripe-signature"];
+    console.log("alahu", buf);
+
+    //console.log("batata", req);
 
     // Eventos que vem do webhook
     let event: Stripe.Event;
 
     try {
-      event = stripe.webhooks.constructEvent(
-        buf,
-        secret,
-        process.env.STRIPE_WEBHOOK_SECRET
-      );
+      event = stripe.webhooks.constructEvent(buf, secret, process.env.STRIPE_WEBHOOK_SECRET);
     } catch (err) {
       return res.status(400).send(`Webhook error: ${err.message}`);
     }
@@ -60,24 +59,15 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
           case "customer.subscription.deleted":
             const subscription = event.data.object as Stripe.Subscription;
 
-            await saveSubscription(
-              subscription.id,
-              subscription.customer.toString(),
-              false
-            );
+            await saveSubscription(subscription.id, subscription.customer.toString(), false);
 
             break;
           case "checkout.session.completed":
             //! Todos os eventos do stripe tem tipagens genéricas de evento
             //? Assim dei uma tipagem e podemos saber tudo que tem dentro do checkout
-            const checkoutSession = event.data
-              .object as Stripe.Checkout.Session;
+            const checkoutSession = event.data.object as Stripe.Checkout.Session;
 
-            await saveSubscription(
-              checkoutSession.subscription.toString(),
-              checkoutSession.customer.toString(),
-              true
-            );
+            await saveSubscription(checkoutSession.subscription.toString(), checkoutSession.customer.toString(), true);
             break;
 
           default:
