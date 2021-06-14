@@ -9,4 +9,7 @@ module.exports = {
   },
   //? Em que ambiente nossos testes estão executando
   testEnvironment: "jsdom",
+  moduleNameMapper: {
+    "\\.(scss|css|sass)$": "identity-obj-proxy",
+  },
 };
